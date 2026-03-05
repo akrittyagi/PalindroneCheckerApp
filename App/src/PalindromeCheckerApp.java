@@ -1,51 +1,40 @@
-import java.util.Scanner;
+import java.util.Stack;
 
-class UseCase4PalindromeCheckerApp {
+public class UseCase5PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC4.
+     * Application entry point for UC5.
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        Scanner input = new Scanner(System.in);
+        // Declare and initialize the input string
+        String input = "noon";
 
-        System.out.println("=== Palindrome Checker App (UC4) ===");
+        // Create a Stack to store characters
+        Stack<Character> stack = new Stack<>();
 
-        // Read string
-        System.out.print("Enter the string: ");
-        String inputString = input.nextLine();
+        // Push each character of the string into the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
-        // Convert the string into a character array
-        char[] charArray = inputString.toCharArray();
-
-        // Initialize pointer at the beginning
-        int start = 0;
-
-        // Initialize pointer at the end
-        int end = charArray.length - 1;
-
+        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Continue comparison until indices cross
-        while (start < end) {
-
-            if (charArray[start] != charArray[end]) {
+        // Iterate again through original string
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
         // Display result
         if (isPalindrome) {
-            System.out.println("Result: The string is a PALINDROME.");
+            System.out.println("The string is a PALINDROME.");
         } else {
-            System.out.println("Result: The string is NOT a palindrome.");
+            System.out.println("The string is NOT a palindrome.");
         }
-
-        input.close();
     }
 }
